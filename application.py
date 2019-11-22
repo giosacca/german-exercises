@@ -48,7 +48,8 @@ def add_new_topic():
 		columns.append('column_{}'.format(i))
 
 	return flask.render_template(
-		'topic.html',
+		'enter.html',
+		topic = 'new_topic',
 		columns = columns,
 		)
 
@@ -120,6 +121,7 @@ def add_lexicon(topic):
 
 	return flask.render_template(
 		'enter.html',
+		action = 'Add',
 		topic = topic,
 		columns = columns,
 		)
@@ -134,7 +136,8 @@ def edit_lexicon(topic):
 		]
 
 	return flask.render_template(
-		'edit.html',
+		'enter.html',
+		action = 'Edit',
 		topic = topic,
 		columns = columns,
 		)

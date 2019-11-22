@@ -1,55 +1,40 @@
-<!doctype html>
-<html>
-    <head>
-        <meta name = "viewport" content = "width=device-width, initial-scale=1">
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-                
-            .column {
-                float: left;
-                width: 40%;
-                padding: 10px;
-            }
-                
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-            </style>
-    </head>
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+    th {
+        text-align: center;
+    }
+    </style>
     <body>
+        <title> {{action}} {{topic}} </title>
 
-        <title> Add {{topic}} </title>
-
-        <form action = "http://localhost:5000/return_{{topic}}" method = "post">
-            {% for col in columns %}
-            <div class = "row">
-                <div class = "column">
-                    <div align = "right">
-                        {{col}}
-                    </div>
-                </div>
-                <div class = "column">
-                    <div align = "left">
-                            <input type = "text" name = {{col}} />
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            <div class = "row">
-                <div class = "column">
-                    <div align = "right">
-                    </div>
-                </div>
-                <div class = "column">
-                    <div align = "left">
-                        <input type = "submit" value = "Save" />
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div align = "center">
+            <table>
+                <form action = "http://localhost:5000/return_{{topic}}" method = "post">
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for col in columns %}
+                            <tr>
+                                <td>{{col}}</td>
+                                <td><input type = "text" name = {{col}} /></td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan = "2">
+                                <div align = "center">
+                                    <input type = "submit" value = "Save" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
+        </div>
     </body>
-</html>
+{% endblock %}

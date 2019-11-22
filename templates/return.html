@@ -1,22 +1,32 @@
-<!doctype html>
-<html>
+{% extends "base.html" %}
+
+{% block content %}
    	<body>
 		<title> Added! </title>
 
-      	<table border = 0>
-         	{% for key, value in result.items() %}
-            	<tr>
-					<th> {{ key }} </th>
-					<td> {{ value }} </td>
-            	</tr>
-         	{% endfor %}
-		  </table>
+		<div align = 'center'>
+			<table>
+				<thead>
+					<tr>
+						<th>Field</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for key, value in result.items() %}
+						<tr>
+							<td> {{ key }} </td>
+							<td> {{ value }} </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
-		  <br /><br />
-		  
-		  <a href = "/{{next}}_{{topic}}">Another</a>
-		  <a href = "/show_{{topic}}">Table</a>
-		  <a href = "/">Home</a>
-		  
+			<br /><br />
+			
+			<a href = "/{{next}}_{{topic}}" class = "button-small">Another</a>
+			<a href = "/show_{{topic}}" class = "button-small">Table</a>
+			<a href = "/" class = "button-small">Home</a>
+		</div>
    	</body>
-</html>
+{% endblock %}
