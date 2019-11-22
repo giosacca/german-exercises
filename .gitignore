@@ -1,0 +1,15 @@
+.ipynb_checkpoints
+.pytest_cache
+.vscode
+/__pycache__
+*/__pycache__
+*/.ipynb_checkpoints
+/docs/build
+/docs/_build
+*.aux
+*.log
+*.gz
+*.out
+*.toc
+~$*.*
+env/

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+   	<body>
+		<title> Added! </title>
+
+      	<table border = 0>
+         	{% for key, value in result.items() %}
+            	<tr>
+					<th> {{ key }} </th>
+					<td> {{ value }} </td>
+            	</tr>
+         	{% endfor %}
+		  </table>
+
+		  <br /><br />
+		  
+		  <a href = "/{{next}}_{{topic}}">Another</a>
+		  <a href = "/show_{{topic}}">Table</a>
+		  <a href = "/">Home</a>
+		  
+   	</body>
+</html>

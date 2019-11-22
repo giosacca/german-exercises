@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<style>
+		.button {
+			background-color: #3436D8;
+			color: white;
+			padding: 14px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			margin: 4px 2px;
+			border-radius: 12px;
+			width: 250px;
+		}
+	</style>
+	<body>
+		<title> Home </title>
+
+		<div align = "center">
+
+			<h1>Home</h1>
+
+			{% for topic in topics %}
+				<a href = "/show_{{topic[0]}}" class = "button">{{topic[1]}}</a><br>
+			{% endfor %}
+			 
+			</br></br>
+
+			<a href = "/add_new_topic" class = "button">Thema hinzufügen</a><br>
+
+		</div>
+		
+	</body>
+</html>
