@@ -5,6 +5,9 @@ A module to manage a database.
 
 import sqlite3 as sql
 import pandas as pd
+import os
+
+import german as g
 
 class Database(object):
 	"""
@@ -115,6 +118,8 @@ class Database(object):
 		self.cursor.execute(command, values)
 		self.connection.commit()
 
+		self.dump_table(table)
+
 	def get_columns(self, table):
 		"""
 		Returns the columns of a table.
@@ -202,3 +207,33 @@ class Database(object):
 			)
 		self.cursor.execute(command)
 		self.connection.commit()
+
+		self.dump_table(table)
+
+	def dump(self):
+		"""
+		Dumps the database into a .csv files.
+		"""
+
+		config = g.Configuration()
+		filename_base = config.parser['paths'].get('dump')
+
+		for table in self.get_tables():
+			self.dump_table(table)
+
+	def dump_table(self, table):
+		"""
+		Dumps a table from the database into a .csv file.
+
+		Parameters
+		----------
+		table : string
+			The name of the table to dump.
+		"""
+
+		config = g.Configuration()
+		filename_base = config.parser['paths'].get('dump')
+
+		df = self.table_to_dataframe(table)
+		filename = '{}{}.csv'.format(filename_base, table)
+		df.to_csv(filename, encoding = 'utf-8-sig')
