@@ -12,6 +12,9 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def home():
+	"""
+	Displays the home of the webapp with the list of topics.
+	"""
 
 	config = g.Configuration()
 
@@ -34,6 +37,9 @@ def home():
 
 @app.route('/add_new_topic')
 def add_new_topic():
+	"""
+	Creates a form where you can add a new topic.
+	"""
 
 	config = g.Configuration()
 
@@ -55,6 +61,9 @@ def add_new_topic():
 
 @app.route('/return_new_topic', methods = ['POST', 'GET'])
 def return_new_topic():
+	"""
+	Returns the values of the new topic you added.
+	"""
 
 	config = g.Configuration()
 
@@ -93,6 +102,9 @@ def return_new_topic():
 
 @app.route('/show_<topic>')
 def topic(topic):
+	"""
+	Displays a page with a table regarding the topic.
+	"""
 
 	config = g.Configuration()
 
@@ -111,13 +123,15 @@ def topic(topic):
 		)
 
 @app.route('/add_<topic>')
-def add_lexicon(topic):
+def add_topic_entry(topic):
+	"""
+	Creates a form where you can add a new entry to a topic.
+	"""
 
 	config = g.Configuration()
 
 	db = g.Database(config.parser['paths'].get('german'))
 	columns = db.get_columns(topic)
-	columns.remove('id')
 
 	return flask.render_template(
 		'enter.html',
@@ -127,7 +141,10 @@ def add_lexicon(topic):
 		)
 
 @app.route('/edit_<topic>')
-def edit_lexicon(topic):
+def edit_topic_entry(topic):
+	"""
+	Creates a form where you can edit an entry to a topic.
+	"""
 
 	columns = [
 		'expression',
@@ -144,6 +161,9 @@ def edit_lexicon(topic):
 
 @app.route('/return_<topic>', methods = ['POST', 'GET'])
 def return_topic(topic):
+	"""
+	Returns the values of the entry you added or edited.
+	"""
 
 	config = g.Configuration()
 

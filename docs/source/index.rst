@@ -16,6 +16,9 @@ Welcome to german's documentation!
 .. automodule:: german.tables
     :members:
 
+.. automodule:: german.utils
+    :members:
+
 Indices and tables
 ==================
 
