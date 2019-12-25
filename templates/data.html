@@ -1,21 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-   	<body>
-		<title> {{title}} </title>
+	<title> {{title}} </title>
+	
+	<div align = "center">
+		<h1> {{title}} </h1>
+
+		<br /><br />
+
+		<a href = "/add_{{category}}" class = "button-small">Add</a>
+		<a href = "/edit_{{category}}" class = "button-small">Edit</a>
+
+		<br /><br />
 		
-		<div align = "center">
-			<h1> {{title}} </h1>
-
-			<br /><br />
-
-			<a href = "/" class = "button-small">Home</a>
-			<a href = "/add_{{category}}" class = "button-small">Add</a>
-			<a href = "/edit_{{category}}" class = "button-small">Edit</a>
-
-			<br /><br />
-			
-			{{data | safe}}
-		</div>  
-   	</body>
+		{{data | safe}}
+	</div>  
 {% endblock %}

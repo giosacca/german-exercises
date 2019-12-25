@@ -1,21 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<body>
-		<title> Home </title>
+	<title> Home </title>
 
-		<div align = "center">
+	<div align = "center">
 
-			<h1>Home</h1>
+		<h1>Home</h1>
 
-			{% for topic in topics %}
-				<a href = "/show_{{topic[0]}}" class = "button-big">{{topic[1]}}</a><br>
-			{% endfor %}
-			 
-			</br></br>
+		{% for topic in topics %}
+			<a href = "/show_{{topic[0]}}" class = "button-big">{{topic[1]}}</a><br>
+		{% endfor %}
 
-			<a href = "/add_new_topic" class = "button-big">Thema hinzufügen</a><br>
-
-		</div>		
-	</body>
+	</div>		
 {% endblock %}

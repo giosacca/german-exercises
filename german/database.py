@@ -188,7 +188,7 @@ class Database(object):
 		
 		return columns
 
-	def get_rows(self, table, id = False, sv = False):
+	def get_rows(self, table, sort_by = None, id = False, sv = False):
 		"""
 		Returns the rows of a table.
 
@@ -200,6 +200,8 @@ class Database(object):
 			Whether to return or not the id.
 		sv : boolean
 			Whether to return or not the sort_value.
+		sort_by : string
+			How to sort the values
 
 		Returns
 		----------
@@ -208,10 +210,13 @@ class Database(object):
 		"""
 
 		columns = self.get_columns(table, id = True, sv = True)
-		if 'sort_value' in columns:
-			sort_value = 'sort_value'
+		if sort_by == 'module':
+			sort_value = 'module DESC, category ASC, sort_value ASC'
 		else:
-			sort_value = 'id'
+			if 'sort_value' in columns:
+				sort_value = 'sort_value'
+			else:
+				sort_value = 'id'
 
 		self.cursor.execute(
 			'SELECT * FROM {} ORDER BY {}'.format(table, sort_value)

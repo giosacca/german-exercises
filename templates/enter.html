@@ -6,35 +6,33 @@
         text-align: center;
     }
     </style>
-    <body>
-        <title> {{action}} {{topic}} </title>
+    <title> {{action}} {{topic}} </title>
 
-        <div align = "center">
-            <table>
-                <form action = "http://localhost:5000/return_{{topic}}" method = "post">
-                    <thead>
+    <div align = "center">
+        <table>
+            <form action = "http://localhost:5000/return_{{topic}}" method = "post">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for col in columns %}
                         <tr>
-                            <th>Field</th>
-                            <th>Value</th>
+                            <td>{{col}}</td>
+                            <td><input type = "text" name = {{col}} /></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for col in columns %}
-                            <tr>
-                                <td>{{col}}</td>
-                                <td><input type = "text" name = {{col}} /></td>
-                            </tr>
-                        {% endfor %}
-                        <tr>
-                            <td colspan = "2">
-                                <div align = "center">
-                                    <input type = "submit" value = "Save" />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </form>
-            </table>
-        </div>
-    </body>
+                    {% endfor %}
+                    <tr>
+                        <td colspan = "2">
+                            <div align = "center">
+                                <input type = "submit" value = "Save" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </form>
+        </table>
+    </div>
 {% endblock %}

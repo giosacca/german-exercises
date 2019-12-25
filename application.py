@@ -5,6 +5,8 @@ A module to manage the exercises application.
 
 import flask
 import yaml
+from flask import url_for
+import pandas as pd
 
 import german as g
 
@@ -109,8 +111,20 @@ def topic(topic):
 	config = g.Configuration()
 
 	db = g.Database(config.parser['paths'].get('german'))
-	table = g.DataTable(db.get_columns(topic))
-	table.add_rows(db.get_rows(topic))
+	table = db.table_to_dataframe(topic)
+	if topic == 'lexicon':
+		table['module'] = pd.to_numeric(table['module'])
+		table = table.sort_values(
+			by = ['module', 'category', 'sort_value'],
+			ascending = [False, True, True],
+			)
+	else:
+		table = table.sort_values(
+			by = ['sort_value'],
+			ascending = [True],
+			)
+	table = table.drop(columns = ['sort_value'])
+	table = table.reset_index(drop = True)
 
 	with open(config.parser['paths'].get('translations'), 'r') as f:
 		translations = yaml.full_load(f)
@@ -119,7 +133,11 @@ def topic(topic):
 		'data.html',
 		title = translations[topic],
 		category = topic,
-		data = table.to_html(),
+		data = table.to_html(
+			justify = 'left',
+			index = False,
+			border = 0,
+			),
 		)
 
 @app.route('/add_<topic>')
@@ -185,7 +203,7 @@ def return_topic(topic):
 			columns = db.get_columns(topic)
 			db.edit_row(
 				table = topic,
-				column_search = columns[1],
+				column_search = columns[0],
 				value_search = result['expression'],
 				column_edit = result['column'],
 				value_edit = result['value'],

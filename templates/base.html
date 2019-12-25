@@ -1,43 +1,28 @@
 <!doctype html>
 <html>
-    <style>
-		.button-big {
-			background-color: #3436D8;
-			color: white;
-			padding: 14px 25px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			margin: 4px 2px;
-			border-radius: 12px;
-			width: 250px;
-		}
-        th, td {
-			padding: 15px;
-			text-align: left;
-		}
-		table tr:nth-child(even) {
-			background-color: #eee;
-		}
-		table tr:nth-child(odd) {
-			background-color: #fff;
-		}
-		table th {
-			background-color: #DADADA;
-			color: black;
-		}
-		.button-small {
-			background-color: #3436D8;
-			color: white;
-			padding: 14px 25px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			margin: 4px 2px;
-			border-radius: 12px;
-			width: 50px;
-		}
-    </style>
-    {% block content %}
-    {% endblock %}
+	<head>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel = "stylesheet" type = "text/css" href = "../static/main.css">
+
+		<link rel = "stylesheet" href = "../static/css/bootstrap.min.css">
+	</head>
+	<body>
+		<header class = "site-header">
+			<nav class = "navbar">
+				<a class = "navbar-link" href = "/">Home</a>
+				<a class = "navbar-link" href = "/add_new_topic">Thema hinzufügen</a>
+			</nav>
+		</header>
+
+		<br></br>
+
+		{% block content %}
+		{% endblock %}
+
+		<script src = "../static/jquery/jquery-3.4.1.min.js"></script>
+		<script src = "../static/popper/popper.min.js"></script>
+		<script src = "../static/js/bootstrap.min.js"></script>
+	</body>
 </html>
